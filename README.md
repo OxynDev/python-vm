@@ -36,7 +36,6 @@ code_visitor = CodeVisitor()
 code_visitor.visit(parsed_code)
 for i in range(14):
     code_visitor.vm.pop(0)
-    pass
 print(code_visitor.vm)
 
 # [12, 9, 1, 0, 12, 9, 2, 0, 12, 1, 9, 17, 21, 0, 8, 27, 12, 9, 1, 0, 12, 9, 10, 0, 12, 2, 9, 33, 37, 0, 8, 43]
