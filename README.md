@@ -1,6 +1,3 @@
-Sure, here's your text formatted as a GitHub README using Markdown syntax:
-
-
 # GxHook Vm
 
 GxHook Vm is a program that translates Python code into opcodes (individual bytecode instructions). The compiler analyzes various code segments and transforms them into something similar to assembly language, making the code unreadable without prior reverse engineering of the virtual machine code and understanding individual instructions. Currently, the program supports basic instructions, but it will be further developed in the future. I created it mainly to demonstrate the concept of a VM for Python.
