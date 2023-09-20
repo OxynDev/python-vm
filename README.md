@@ -70,7 +70,3 @@ def run(self):
     # print(self.processor)
 ```
 
-Remember to replace the code in the example above with your compiled VM code.
-```
-
-This Markdown document should render nicely on GitHub as a README for your project.
