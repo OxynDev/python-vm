@@ -7,9 +7,9 @@ GxHook Vm is a program that translates Python code into opcodes (individual byte
 - `free` [0] (MEMORY)
 - `plus` [1] (A + B)
 - `minus` [2] (A - B)
-- `mod` [3] (a % b) SOON
-- `mul` [4] (a * b) SOON
-- `div` [5] (a / b) SOON
+- `mod` [3] (a % b) 
+- `mul` [4] (a * b) 
+- `div` [5] (a / b) 
 - `int` [6] (int(x))
 - `str` [7] (str(x)) SOON
 - `print` [8] (print(x))
@@ -18,6 +18,9 @@ GxHook Vm is a program that translates Python code into opcodes (individual byte
 - `float` [11] (declaration) SOON
 - `assign` [12] (a = 1)
 - `load` [13] (x = proc[i])
+- `function_def` [14] (def foo)
+- `label` [15] (end mark)
+- `function_run` [16] (foo())
 
 More coming soon.
 ```
@@ -26,9 +29,12 @@ GxHook also includes a compiler that automatically converts Python code into VM 
 ```python
 source_code = """
 a = 1
-b = 2
-print(a + b)
-print(1-10)
+def foo():
+    print(a/2)
+def foo2():
+    print(1-10)
+foo()
+foo2()
 """
 
 parsed_code = ast.parse(source_code)
@@ -38,7 +44,14 @@ for i in range(14):
     code_visitor.vm.pop(0)
 print(code_visitor.vm)
 
-# [12, 9, 1, 0, 12, 9, 2, 0, 12, 1, 9, 17, 21, 0, 8, 27, 12, 9, 1, 0, 12, 9, 10, 0, 12, 2, 9, 33, 37, 0, 8, 43]
+# [12, 9, 1, 0, 14, 12, 9, 2, 0, 8, 25, 15, 0, 14, 12, 9, 1, 0, 12, 9, 10, 0, 12, 2, 9, 34, 38, 0, 8, 44, 15, 0, 16, 22, 16, 31]
+```
+
+## Change log
+```diff
+v1.0.1 ⋮ 22/10/2023
++ added function logic
++ added minus, div, mul, mod operators
 ```
 
 ### How to Use GxHook
