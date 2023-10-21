@@ -71,6 +71,30 @@ class Vm:
                 self.processor[self.index] = self.processor[6](res)
             #print("ASSIGN: " + str(self.index), self.processor[6](res))
 
+    def function_def(self):
+        self.index += 1
+        while self.processor[self.index] != 15:
+            self.index += 1
+        self.index += 1
+
+    def function_run(self):
+        self.index += 1
+        function_index = self.processor[self.index]
+        start_index = self.index
+        self._jmp(function_index)
+
+        while self.processor[self.index] != 15:
+            self.instructions[self.processor[self.index]]()
+            self.index += 1
+        
+        self._jmp(start_index)
+
+    def _label(self):
+        pass
+
+    def _jmp(self, i):
+        self.index = i
+
     def load_functions(self):
 
         self.instructions = [
@@ -87,7 +111,11 @@ class Vm:
                 10, # str
                 11, # float
                 self._assign, # 12
-                self._load # 13
+                self._load, # 13
+
+                self.function_def, # 14
+                self._label, # 15
+                self.function_run, # 16
             ]
 
         for i in self.instructions:
@@ -96,7 +124,8 @@ class Vm:
         
     def run(self):
         self.load_functions()
-        for i in [12, 9, 1, 0, 12, 9, 2, 0, 12, 1, 9, 17, 21, 0, 8, 27, 12, 9, 1, 0, 12, 9, 10, 0, 12, 2, 9, 33, 37, 0, 8, 43]:
+                 
+        for i in [12, 9, 1, 0, 14, 12, 9, 2, 0, 8, 25, 15, 0, 14, 12, 9, 1, 0, 12, 9, 10, 0, 12, 2, 9, 34, 38, 0, 8, 44, 15, 0, 16, 22, 16, 31, 16, 22, 16, 31]:
             self.processor.append(i)
         self.index = self.instructions_count
         print("VM INSTRUCTIONS: " + str(self.index))
