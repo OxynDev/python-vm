@@ -2,6 +2,13 @@
 
 GxHook Vm is a program that translates Python code into opcodes (individual bytecode instructions). The compiler analyzes various code segments and transforms them into something similar to assembly language, making the code unreadable without prior reverse engineering of the virtual machine code and understanding individual instructions. Currently, the program supports basic instructions, but it will be further developed in the future. I created it mainly to demonstrate the concept of a VM for Python.
 
+## Change log
+```diff
+v1.0.1 ⋮ 22/10/2023
++ added function logic
++ added minus, div, mul, mod operators
+```
+
 ## Opcodes
 ```markdown
 - `free` [0] (MEMORY)
@@ -45,13 +52,6 @@ for i in range(14):
 print(code_visitor.vm)
 
 # [12, 9, 1, 0, 14, 12, 9, 2, 0, 8, 25, 15, 0, 14, 12, 9, 1, 0, 12, 9, 10, 0, 12, 2, 9, 34, 38, 0, 8, 44, 15, 0, 16, 22, 16, 31]
-```
-
-## Change log
-```diff
-v1.0.1 ⋮ 22/10/2023
-+ added function logic
-+ added minus, div, mul, mod operators
 ```
 
 ### How to Use GxHook
